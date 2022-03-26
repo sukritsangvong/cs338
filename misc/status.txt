@@ -1,0 +1,4 @@
+PJ Sangvong
+
+I plan to use Kali on my personal machine. I have already 
+installed both Kali and Metasploitable2 on my machine.
