@@ -1,0 +1,22 @@
+PJ Sangvong
+
+1) >>> ifconfig
+Then look for inet under en7 (my laptop is connected via ethernet cable). 
+Know this from working for Mike Tie, and double check the ip by going into 
+System Preferences >> Network graphically.
+
+2) 
+
+3)
+
+4)
+
+5)
+
+6)
+
+7)
+
+8)
+
+9) 
