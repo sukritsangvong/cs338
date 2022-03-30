@@ -1,22 +1,45 @@
 PJ Sangvong
 
 1) >>> ifconfig
-Then look for inet under en7 (my laptop is connected via ethernet cable). 
-Know this from working for Mike Tie, and double check the ip by going into 
-System Preferences >> Network graphically.
+Then look for inet under eth0. 
+(Used this when doing CS System Admin job on campus)
 
-2) 
+2) >>> ping HOSTNAME
+Replace HOSTNAME with a domain name like >>> ping google.com. The next line 
+will show the ip of the HOSTNAME.
+(https://www.dotcom-monitor.com/wiki/knowledge-base/target-hostname-or-ip-address/#:~:text=In%20an%20open%20command%20line,web%20resource%20in%20the%20response.)
 
-3)
+3) >>> whois IPADDRESS
+Replace IPADDRESS with an ip address like >>> whois 142.250.191.206. The output will
+show information about the host of the ip (Google)
+(https://www.dotcom-monitor.com/wiki/knowledge-base/target-hostname-or-ip-address/#:~:text=In%20an%20open%20command%20line,web%20resource%20in%20the%20response.)
 
-4)
+4) Use sftp. The commands are the following: 
+(assume that there is a file /home/kali/Documents/test-file.txt and want to transfer to mantis)
+On Kali:
+>>> sftp sangvongp@mantis.mathcs.carleton.edu 
+>>> # enter my password
+>>> put /home/kali/Documents/test-file.txt 
+(https://linuxize.com/post/how-to-use-linux-sftp-command-to-transfer-files/)
 
-5)
+5) >>> lsof -i :80 # to get from port 80
+if nothing is shown, it means that there is no process.
+(https://www.tecmint.com/find-out-which-process-listening-on-a-particular-port/)
 
-6)
+6) >>> netstat -ltnp 
+The hostname(s) will be displayed on the last column (PID/Program name) and 
+the port will be the last chunk of digits in Local Address. Can also use grep
+if know the name of the host.
+(https://vitux.com/find-out-which-port-number-a-process-is-listening-on-using-linux/)
 
-7)
+7) >>> wget -r WEBSITE
+Replace WEBSITE with a valid url like >>> wget -r https://google.com/. 
+(https://www.lifewire.com/uses-of-command-wget-2201085)
 
-8)
+8) >>> curl -s -D - -o /dev/null WEBSITE
+Replace WEBSITE with a valid url like >>> curl -s -D - -o /dev/null https://google.com/. 
+(https://serverfault.com/questions/249483/shell-command-to-see-the-http-headers)
 
-9) 
+9) >>> curl -I WEBSITE
+Replace WEBSITE with a valid url like >>> wget -I https://google.com/. 
+(https://stackoverflow.com/questions/3252851/how-to-display-request-headers-with-command-line-curl)
