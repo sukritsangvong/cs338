@@ -62,7 +62,12 @@ in the Info column.
 11	172.16.151.128	45.79.89.123	HTTP	GET /jeff_square_head.jpg HTTP/1.1 
 
 
-====== OUTPUT ======
+===== QUESTIONS =====
+What does the tag [Keep-Alive] in Protocal do? 
+What's the differences between [TCP] and [TCP Keep-Alive]?
+
+
+====== OUTPUTS ======
 1	0.000000000	172.16.151.128	129.6.15.28	TCP	74	38694 → 13 [SYN] Seq=0 Win=64240 Len=0 MSS=1460 SACK_PERM=1 TSval=1815060638 TSecr=0 WS=128
 2	0.036236053	129.6.15.28	172.16.151.128	TCP	60	13 → 38694 [SYN, ACK] Seq=0 Ack=1 Win=64240 Len=0 MSS=1460
 3	0.036338787	172.16.151.128	129.6.15.28	TCP	54	38694 → 13 [ACK] Seq=1 Ack=1 Win=64240 Len=0
