@@ -1,0 +1,48 @@
+PJ Sangvong
+
+===== DAYTIME =====
+1)
+1   172.16.151.128  129.6.15.28     TCP [SYN] ...
+2   129.6.15.28	    172.16.151.128	TCP	[SYN, ACK] ...
+3	172.16.151.128	129.6.15.28	    TCP	[ACK] ...
+
+2)
+port 13
+TODO: why client needs a port
+
+3)
+4	129.6.15.28	    172.16.151.128	DAYTIME	DAYTIME Response
+
+4)?
+Apart from Ethernet, IP, and TCP, each frame can also contain
+the information (Info) of the frame. This Info can either be
+nothing or can hold response information that we want (like
+DAYTIME or any text).
+
+5)
+[SYN] or suncronize represents the start of a TCP connection. 
+(https://www.rapid7.com/blog/post/2017/11/27/firewall-reporting-excessive-syn-packets/)
+
+6)
+[ACK] or acknowledge is a way for a machine to send "signal" 
+(to anther machine) that it has received something from another 
+machine.
+(https://osqa-ask.wireshark.org/questions/20423/pshack-wireshark-capture/#:~:text=ACK%20means%20that%20the%20machine,data%20that%20it's%20already%20acknowledged.)
+
+7)
+[FIN] or finish represents the end of a TCP connection.
+(https://osqa-ask.wireshark.org/questions/37630/wireshark-syn-ack-fin-get/#:~:text=A%20FIN%20is%20used%20to,TCP%20header%20is%20acknowledging%20data)
+
+8)
+Kali initiate the closing of the TCP connection because on 
+frame 5, kali (172...) sends out [FIN] in the header to tell
+daytime server that it wants to terminate the TCP connection.
+(It is also sending out [ACK] to acknowledge that it has 
+recieved the information that daytime server sent in the 
+previous frame)
+
+5	172.16.151.128	129.6.15.28	TCP	[FIN, ACK] 
+
+
+
+======= HTTP =======
