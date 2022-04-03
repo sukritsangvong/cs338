@@ -50,10 +50,8 @@ previous frame)
 
 ======= HTTP =======
 1)
-(Not sure how to count TCP. As seen in the === OUTPUTS === below, I tried
-running web-browser twice, and each time returned different number of frames)
-50 TCP connections were opened (counting from frames where the Protocal 
-is listed as TCP).
+There are 3 TCP connections. We only count the frame with
+[SYN, ACK] since this is a 3-way handshake connection.
 
 2)
 It is being requested from here. There is a header GET /index.html 
