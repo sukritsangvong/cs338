@@ -48,8 +48,9 @@ Encoding: message_n^1249 mod 5561
 2. This process will 'fail' when trying to find d for very large p and q. When p and q are big, there will be too many d 
 to check. Thus, finding ed = 1mod(p-1)(q-1) will take a forever.
 
-3. RSA encoding is 'insecure' because we could theorically compute the encryption key with enough time and computing power. 
-Moreover, there is no randomization involved in RSA, so we would be able to guess what letters are in the message based on 
-common words (eg: Bob, Alice, Hello/Hi/Hey), and use this information to decrypt the message.  
+3. RSA encoding is 'insecure' because we could theorically compute the encryption key with enough time and computing power.
+If a quantum computer is powerful enough, RSA encoding would be broken is it is not quantum-resistant. Moreover, Bob and Alice 
+are using RSA encoding on word-by-word, meaning that it is possible (and easy) to guess what letters are in the message 
+based on common words (eg: Bob, Alice, Hello/Hi/Hey), and we can use this knowlege to decrypt the message.  
 
 Citation: https://paginas.fe.up.pt/~ei10109/ca/rsa-vulnerabilities.html#:~:text=Because%20RSA%20encryption%20is%20a,are%20equal%20to%20the%20ciphertext.
