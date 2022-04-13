@@ -35,13 +35,13 @@ Method of computing:
 
 The factors of 5561 are {1, 67, 83, 5561}, therefore possible p and q are 67 and 83 repectively. We also know that e = 13.
 We now find d: 
-13d = 1 mod 66*82 -> d = 1249. So we know that S = (5561, 1249) and P(5561, 13). 
+13d = 1 mod 66*82 -> d = 1249 is a possibility. So we know that S = (5561, 1249) and P(5561, 13). 
 To decrypt the message, we used this equation: message_n^d mod N = message_n^1249 mod 5561, which
 will give us an ascii number, which we then use to convert to a character. 
 
-To decrypt the message, we tried writing a Python script to iterate through the list and apply the decoding equation:
-message_n^1249 mod 5561 to each element in the list to get the result. Here is the coode: (lst is a list of encoded 
-text. can see more in rsa.py)
+To decrypt the message, we wrote Python script (rsa.py) to iterate through the list and apply the decoding equation:
+message_n^1249 mod 5561 to each element in the list to get the result, and then get the corresponding ascii char. 
+Here is the code: (lst is a list of encoded text. can see more in the rsa.py file in this directory)
 
 message = ''
 for num in lst:
@@ -50,7 +50,7 @@ for num in lst:
     message += char
 
 2. This process will 'fail' when trying to find d for very large p and q. When p and q are big, there will be too many d 
-to check. Thus, finding ed = 1mod(p-1)(q-1) will take a forever.
+to check. Thus, finding the correct d in ed = 1mod(p-1)(q-1) will take forever.
 
 3. RSA encoding is 'insecure' because we could theorically compute the encryption key with enough time and computing power.
 If a quantum computer is powerful enough, RSA encoding would be broken is it is not quantum-resistant. Moreover, Bob and Alice 
