@@ -1,0 +1,55 @@
+Names: Luisa Escosteguy, PJ Sangvong
+
+
+------ Diffie-Hellman ------
+
+1. Value of the shared key K: 36
+   Method of computing: 
+
+First let g = 11, p = 59, A = 57 and B = 44. Then we have the equations for the private keys:
+
+57 = 11^a mod 59 -> answer in the form: a = 58n + 36, for n >= 0.
+44 = 11^b mod 59 -> answer in the form: b = 58n + 15, for n >= 0.
+
+A possible answer for the private keys are a = 36 and b = 15 when n = 0, so we check if the shared keys match:
+
+shared key equations:  
+K = 44^a mod 59 and a = 36 -> K = 36
+K = 57^b mod 59 and b = 15 -> K = 36
+
+The numbers match so we found our shared key = 36.
+
+2. This wouldn't work with big integers because there will be too many possible solutions, and it would require us
+to check lots of numbers in the shared key equations. Here, we were lucky that n = 0, but n could theorically be 
+any positive number, so checking several many solutions is not very practical. The greater g and p are, the harder
+to go through this process.  
+
+Citation: https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Diffie-Hellman-Schlüsselaustausch.svg/1200px-Diffie-Hellman-Schlüsselaustausch.svg.png
+and used https://www.wolframalpha.com for calculations. 
+
+------ RSA ------ 
+
+1. Message: Hey Bob. It's even worse than we thought! Your pal, Alice. https://www.schneier.com/blog/archives/2022/04/airtags-are-used-for-stalking-far-more-than-previously-reported.html
+
+Method of computing:
+
+The factors of 5561 are {1, 67, 83, 5561}, therefore possible p and q are 67 and 83 repectively. We also know that e = 13.
+We now find d: 
+13d = 1 mod 66*82 -> d = 1249. So we know that S = (5561, 1249) and P(5561, 13). 
+To decrypt the message, we used this equation: message_n^d mod N = message_n^1249 mod 5561, which
+will give us an ascii number, which we then use to convert to a character. 
+
+To decrypt the message, we tried writing Python or Java code, but neither worked because of integer overflow. 
+We then used wolframalpha to manually get the ascii values for each encrypted word. Finally, we input the ascii values 
+in a Python program that gave us the decrypted message. 
+
+Encoding: message_n^1249 mod 5561
+
+2. This process will 'fail' when trying to find d for very large p and q. When p and q are big, there will be too many d 
+to check. Thus, finding ed = 1mod(p-1)(q-1) will take a forever.
+
+3. RSA encoding is 'insecure' because we could theorically compute the encryption key with enough time and computing power. 
+Moreover, there is no randomization involved in RSA, so we would be able to guess what letters are in the message based on 
+common words (eg: Bob, Alice, Hello/Hi/Hey), and use this information to decrypt the message.  
+
+Citation: https://paginas.fe.up.pt/~ei10109/ca/rsa-vulnerabilities.html#:~:text=Because%20RSA%20encryption%20is%20a,are%20equal%20to%20the%20ciphertext.
