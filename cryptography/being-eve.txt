@@ -39,11 +39,15 @@ We now find d:
 To decrypt the message, we used this equation: message_n^d mod N = message_n^1249 mod 5561, which
 will give us an ascii number, which we then use to convert to a character. 
 
-To decrypt the message, we tried writing Python or Java code, but neither worked because of integer overflow. 
-We then used wolframalpha to manually get the ascii values for each encrypted word. Finally, we input the ascii values 
-in a Python program that gave us the decrypted message. 
+To decrypt the message, we tried writing a Python script to iterate through the list and apply the decoding equation:
+message_n^1249 mod 5561 to each element in the list to get the result. Here is the coode: (lst is a list of encoded 
+text. can see more in rsa.py)
 
-Encoding: message_n^1249 mod 5561
+message = ''
+for num in lst:
+    ascii = num ** 1249 % 5561
+    char = chr(ascii)
+    message += char
 
 2. This process will 'fail' when trying to find d for very large p and q. When p and q are big, there will be too many d 
 to check. Thus, finding ed = 1mod(p-1)(q-1) will take a forever.
