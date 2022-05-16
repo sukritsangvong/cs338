@@ -1,0 +1,76 @@
+Names: Luisa Escosteguy, PJ Sangvong
+
+Part 1
+Total time: 
+    real    0m0.799s
+    user    0m0.683s
+    sys     0m0.054s
+Number of hashes computed: All of them, 267751
+Passwords cracked: 2805
+Time per hash computed: 0.0000025s (user time / total # hashes)
+Time per password cracked: 0.00024s (user time / total # passwords)
+Passwords cracked per number of hashes computed: 0.01 passwords cracked per hash (total # passwords / total # hashes)
+
+Part 2
+Total time: 
+    real    936m5.940s
+    user    587m38.275s
+    sys     1m53.608s
+Number of hashes computed: 8,000,000,000
+Passwords cracked: 326
+Time per hash computed: 0.0000044s (35258/8 billion)
+Time per password cracked: 108.2s
+Passwords cracked per number of hashes computed: 0.00000004075 passwords cracked per hash
+
+Part 3
+Total time: 
+    real    8m26.350s
+    user    8m24.482s
+    sys     0m0.356s
+Number of hashes computed: 373448547
+Passwords cracked: 2805
+Time per hash computed: 0.0000013s
+Time per password cracked: 0.17s
+Passwords cracked per number of hashes computed: 0.0000075 passwords cracked per hash
+
+Analysis:
+- Did your time per hash computed change between phases? By what factor? Why?
+    - No, the time to compute a hash is still approximately the same (it changed a little bit, 
+    likely because we used different computers, but nothing significant). In part 2, 
+    we are computing much more hashes but also are using a lot more time, so the time per hash 
+    remains rounghly the same. This makes sense because hashing string should be a close-to-constant operation. 
+
+- Did your time per password crack change between phases? By what factor? Why?
+[number and explanation]
+   -    Yes because some phases takes longer to run and crack fewer passwords. For phase 1, 
+        it takes 0.00024 seconds per password, but for phase 2, it takes 108.2s seconds per 
+        password, which is 108.2/0.00024 = 450833 slower. From phase 3 to phase 2, it 
+        was 108.2/0.17 = 636 slower. From phase 1 to phase 3 is was 0.17/0.00024 = 708 slower.
+        Our fastest time per password crack was phase 1, followed by phase 3 and then the slowest 
+        was phase 2. 
+
+
+- Suppose you wanted to precompute all the possible password hashes for each
+so you could just look up the password in a table indexed by the hash. How much
+memory would be required for each phase?
+    -   For phase 1, we will just need 267751 hashes. Since each hash is hashed by sha-256,
+        we will need around 256 bits (32 bytes) for each hash. This means that we need a total 
+        of 8568032 bytes to store all the hashes. As the key to the dictonary is a word in our implementation
+        and we assume every word is 16 bytes, then we add 16*267751 = 4284016 bytes, 
+        and also 267751*32 = 8568032 for mapping overhead. Total estimation: 21420080 bytes. 
+
+        For phase 2, if we are to compute the hashes, we will need 267751 * 267751 = 71690598001
+        hashes which is a total of around 2 * 10^12 bytes. Every dictionary key is a word (16 bytes).
+        then we need 16*71690598001 = 1.14*10^12 bytes plus 32*71690598001 = 2 * 10^12 bytes bytes.
+        Total estimation: 5.14*10^12 bytes.
+
+        For phase 3, if we use the salt given, we need to compute the hash with all the 
+        words prepended by the salt for all the passwords. That would be 267751*2805 = 751041555 hashes. 
+        Therefore, 751041555*32 = 24033329760 bytes. We don't use dictionaries in this part. 
+
+- Give 3-4 reasons we should store password hashes and not the passwords themselves.
+Think in terms of threats, who the attackers might be, etc.
+    -   Since everything is hashed, we know that all the passwords will be in fixed length digest, 
+        and this will be easier to design data strucutre or encrypt with public encryption. 
+    -   If someone gains access to the password files, they can not directly read the passwords.
+    -   The password file can be stored in opened since it is not feasible to unhash the hashes. 
